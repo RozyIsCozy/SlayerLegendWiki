@@ -16,6 +16,7 @@
       "title": "Gameplay",
       "icon": "⚔️",
       "order": 1,
+      "expandedByDefault": true,
       "sections": ["getting-started", "characters", "equipment", "companions", "skills"]
     },
     {
@@ -23,6 +24,7 @@
       "title": "Content",
       "icon": "🗺️",
       "order": 2,
+      "expandedByDefault": true,
       "sections": ["content", "progression", "resources"]
     },
     {
@@ -162,6 +164,11 @@
     "calculators": true,
     "progressTracking": true,
     "autoFormatPageTitles": true,
+    "sidebarTreeLines": {
+      "enabled": true,
+      "width": 1,
+      "style": "solid"
+    },
     "starContributor": {
       "enabled": true,
       "icon": "⭐"
