@@ -164,6 +164,10 @@
     "calculators": true,
     "progressTracking": true,
     "autoFormatPageTitles": true,
+    "customHomePage": {
+      "enabled": false,
+      "path": "home.md"
+    },
     "sidebarTreeLines": {
       "enabled": true,
       "width": 1,
@@ -176,6 +180,23 @@
     "comments": {
       "enabled": true,
       "label": "wiki-comments"
+    },
+    "editRequestCreator": {
+      "mode": "auto",
+      "forks": {
+        "enabled": true,
+        "autoSync": true,
+        "keepForkUpdated": true
+      },
+      "anonymous": {
+        "enabled": false,
+        "serverEndpoint": "",
+        "attributionFormat": "Contributed anonymously via wiki editor"
+      },
+      "permissions": {
+        "requireAuth": true,
+        "fallbackToFork": true
+      }
     }
   },
   "theme": {

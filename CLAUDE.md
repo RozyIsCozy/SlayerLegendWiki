@@ -252,6 +252,38 @@ Example:
 }
 ```
 
+**Custom Home Page Feature:**
+When `features.customHomePage.enabled` is true, the home page displays a custom markdown file instead of the default sections grid:
+- Set `enabled: true` to activate custom home page
+- Set `path` to the markdown file location relative to `public/content/` (default: "home.md")
+- Create the markdown file at `public/content/[path]` with frontmatter
+- Falls back to error page if file not found
+- Disabled by default (shows default home page with sections grid)
+
+Example:
+```json
+{
+  "features": {
+    "customHomePage": {
+      "enabled": true,
+      "path": "home.md"
+    }
+  }
+}
+```
+
+Then create `public/content/home.md`:
+```markdown
+---
+title: Welcome to Our Wiki
+description: Custom home page content
+---
+
+# Welcome!
+
+Your custom home page content here...
+```
+
 ### vite.config.js
 Must update `base` to match repository name:
 ```javascript
