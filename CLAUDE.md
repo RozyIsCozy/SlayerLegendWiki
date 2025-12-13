@@ -291,7 +291,13 @@ When `features.editRequestCreator.permissions.allowDirectCommit` is enabled, use
 - **When `true`** - Contributors with write access commit directly to main branch
 - Only affects authenticated users with write/admin permissions
 - Users without write access still use the fork/PR workflow
-- Works for both creating/editing pages and deleting pages
+- Works for creating/editing pages
+
+**Delete operations** have a separate control (`allowDirectCommitDelete`):
+- **Default: `false`** - Deletes always create PRs, even when `allowDirectCommit` is true
+- **When `true`** - Contributors can delete pages directly from main branch
+- Requires **both** `allowDirectCommit` AND `allowDirectCommitDelete` to be true
+- Recommended to keep `false` for safety (deletes are permanent)
 
 **When to enable:**
 - Small teams with trusted contributors
@@ -303,6 +309,7 @@ When `features.editRequestCreator.permissions.allowDirectCommit` is enabled, use
 - When you want to review all changes
 - To maintain audit trail through PRs
 - To prevent accidental changes
+- **Always for deletes** - extra safety for destructive operations
 
 Example:
 ```json
@@ -312,7 +319,8 @@ Example:
       "permissions": {
         "requireAuth": true,
         "fallbackToFork": true,
-        "allowDirectCommit": false
+        "allowDirectCommit": false,
+        "allowDirectCommitDelete": false
       }
     }
   }
@@ -320,8 +328,9 @@ Example:
 ```
 
 **Behavior:**
-- **allowDirectCommit: false** (default) → Creates PR for review
-- **allowDirectCommit: true** → Contributors commit directly, others create PR
+- **allowDirectCommit: false** → All operations create PRs
+- **allowDirectCommit: true, allowDirectCommitDelete: false** (recommended) → Edits commit directly, deletes create PRs
+- **allowDirectCommit: true, allowDirectCommitDelete: true** → Both edits and deletes commit directly
 - Confirmation dialogs update to indicate immediate vs. PR-based changes
 
 ### vite.config.js

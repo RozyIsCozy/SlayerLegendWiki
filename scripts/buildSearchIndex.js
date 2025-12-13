@@ -101,6 +101,7 @@ function buildSearchIndex() {
         tags: frontmatter.tags || [],
         category: frontmatter.category || '',
         date: frontmatter.date || '',
+        order: frontmatter.order ?? 0,
       };
 
       searchIndex.push(entry);

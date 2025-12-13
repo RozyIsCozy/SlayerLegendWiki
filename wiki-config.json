@@ -197,7 +197,8 @@
       "permissions": {
         "requireAuth": true,
         "fallbackToFork": true,
-        "allowDirectCommit": true
+        "allowDirectCommit": true,
+        "allowDirectCommitDelete": false
       }
     }
   },
