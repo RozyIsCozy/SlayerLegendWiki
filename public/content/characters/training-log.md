@@ -9,4 +9,6 @@ date: ''
 # training-log
 Comprehensive guide coming soon
 
-ASDASDASDASD
+
+
+sdfsdfsdfsdfsdfsdf
