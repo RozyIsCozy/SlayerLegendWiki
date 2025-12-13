@@ -1,9 +1,12 @@
 ---
-title: promotions
-description: Character system guide  
-tags: [character]
-category: Characters
-date: 2025-12-13
+id: promotions
+title: ''
+description: ''
+tags: []
+category: ''
+date: ''
+order: 0
 ---
 # promotions
-Comprehensive guide coming soon
+Comprehensive guide coming soon 
+asdasdasdasd
