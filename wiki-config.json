@@ -2,13 +2,55 @@
   "wiki": {
     "title": "Slayer Legend Wiki",
     "description": "Complete guide for Slayer Legend: Idle RPG (슬레이어 키우기)",
-    "logo": "/logo.png",
+    "logo": "/images/logo.png",
     "repository": {
       "owner": "BenDol",
       "repo": "SlayerLegendWiki",
       "branch": "main",
-      "contentPath": "content"
+      "contentPath": "public/content"
     }
+  },
+  "categories": [
+    {
+      "id": "gameplay",
+      "title": "Gameplay",
+      "icon": "⚔️",
+      "order": 1,
+      "sections": ["getting-started", "characters", "equipment", "companions", "skills"]
+    },
+    {
+      "id": "content",
+      "title": "Content",
+      "icon": "🗺️",
+      "order": 2,
+      "sections": ["content", "progression", "resources"]
+    },
+    {
+      "id": "guides",
+      "title": "Guides & Tools",
+      "icon": "📚",
+      "order": 3,
+      "sections": ["guides", "database", "tools"]
+    }
+  ],
+  "sidebar": {
+    "pages": [
+      {
+        "title": "Home",
+        "path": "/",
+        "icon": "🏠"
+      },
+      {
+        "title": "Contributing",
+        "path": "/meta/contributing",
+        "icon": "✍️"
+      },
+      {
+        "title": "Guidelines",
+        "path": "/meta/guidelines",
+        "icon": "📋"
+      }
+    ]
   },
   "sections": [
     {
@@ -16,7 +58,6 @@
       "title": "Getting Started",
       "path": "getting-started",
       "icon": "🎮",
-      "showInHeader": true,
       "allowContributions": true,
       "order": 1
     },
@@ -25,7 +66,6 @@
       "title": "Characters",
       "path": "characters",
       "icon": "⚔️",
-      "showInHeader": true,
       "allowContributions": true,
       "order": 2
     },
@@ -34,7 +74,6 @@
       "title": "Equipment",
       "path": "equipment",
       "icon": "🛡️",
-      "showInHeader": true,
       "allowContributions": true,
       "order": 3
     },
@@ -43,7 +82,6 @@
       "title": "Companions",
       "path": "companions",
       "icon": "🤝",
-      "showInHeader": true,
       "allowContributions": true,
       "order": 4
     },
@@ -52,7 +90,6 @@
       "title": "Skills",
       "path": "skills",
       "icon": "✨",
-      "showInHeader": true,
       "allowContributions": true,
       "order": 5
     },
@@ -61,7 +98,6 @@
       "title": "Content",
       "path": "content",
       "icon": "🗺️",
-      "showInHeader": true,
       "allowContributions": true,
       "order": 6
     },
@@ -70,7 +106,6 @@
       "title": "Progression",
       "path": "progression",
       "icon": "📈",
-      "showInHeader": true,
       "allowContributions": true,
       "order": 7
     },
@@ -79,7 +114,6 @@
       "title": "Resources",
       "path": "resources",
       "icon": "💎",
-      "showInHeader": true,
       "allowContributions": true,
       "order": 8
     },
@@ -88,7 +122,6 @@
       "title": "Guides",
       "path": "guides",
       "icon": "📚",
-      "showInHeader": true,
       "allowContributions": true,
       "order": 9
     },
@@ -106,9 +139,16 @@
       "title": "Tools",
       "path": "tools",
       "icon": "🛠️",
-      "showInHeader": true,
       "allowContributions": false,
       "order": 11
+    },
+    {
+      "id": "meta",
+      "title": "Wiki Meta",
+      "path": "meta",
+      "icon": "📘",
+      "allowContributions": false,
+      "order": 12
     }
   ],
   "features": {
@@ -120,9 +160,72 @@
     "tags": true,
     "buildSharing": true,
     "calculators": true,
-    "progressTracking": true
+    "progressTracking": true,
+    "autoFormatPageTitles": true,
+    "starContributor": {
+      "enabled": true,
+      "icon": "⭐"
+    },
+    "comments": {
+      "enabled": true,
+      "label": "wiki-comments"
+    }
   },
   "theme": {
     "primaryColor": "#dc2626"
+  },
+  "prestige": {
+    "enabled": true,
+    "tiers": [
+      {
+        "id": "newcomer",
+        "title": "Newcomer",
+        "minContributions": 0,
+        "badge": "🌱",
+        "color": "#9ca3af"
+      },
+      {
+        "id": "contributor",
+        "title": "Contributor",
+        "minContributions": 1,
+        "badge": "✍️",
+        "color": "#3b82f6"
+      },
+      {
+        "id": "regular",
+        "title": "Regular Editor",
+        "minContributions": 5,
+        "badge": "📝",
+        "color": "#10b981"
+      },
+      {
+        "id": "dedicated",
+        "title": "Dedicated Writer",
+        "minContributions": 15,
+        "badge": "📚",
+        "color": "#8b5cf6"
+      },
+      {
+        "id": "expert",
+        "title": "Wiki Expert",
+        "minContributions": 30,
+        "badge": "⭐",
+        "color": "#f59e0b"
+      },
+      {
+        "id": "master",
+        "title": "Master Contributor",
+        "minContributions": 50,
+        "badge": "🏆",
+        "color": "#f97316"
+      },
+      {
+        "id": "legend",
+        "title": "Wiki Legend",
+        "minContributions": 100,
+        "badge": "👑",
+        "color": "#dc2626"
+      }
+    ]
   }
 }

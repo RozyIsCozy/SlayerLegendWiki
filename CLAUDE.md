@@ -178,6 +178,53 @@ date: 2025-12-12
 
 **Never edit `public/wiki-config.json` directly** - it's auto-generated and gitignored.
 
+#### Navigation Structure
+
+The wiki uses a hierarchical navigation system:
+
+**Categories** → **Sections** → **Pages**
+
+- **Categories**: Top-level groups in the header with dropdown menus (e.g., "Gameplay", "Content")
+- **Sections**: Content areas within categories (e.g., "Characters", "Equipment")
+- **Pages**: Individual markdown pages within sections (e.g., "promotions.md")
+
+**Sidebar Configuration:**
+The sidebar is separate from the category/section hierarchy and shows important meta pages:
+- Home link
+- Contributing guide
+- Editing guidelines
+
+Example structure:
+```json
+{
+  "categories": [
+    {
+      "id": "gameplay",
+      "title": "Gameplay",
+      "icon": "⚔️",
+      "order": 1,
+      "sections": ["getting-started", "characters", "equipment"]
+    }
+  ],
+  "sections": [
+    {
+      "id": "characters",
+      "title": "Characters",
+      "path": "characters",
+      "icon": "⚔️",
+      "allowContributions": true,
+      "order": 2
+    }
+  ],
+  "sidebar": {
+    "pages": [
+      { "title": "Home", "path": "/", "icon": "🏠" },
+      { "title": "Contributing", "path": "/meta/contributing", "icon": "✍️" }
+    ]
+  }
+}
+```
+
 Must update when deploying:
 - `wiki.title` - Wiki name
 - `wiki.description` - Wiki description
@@ -185,8 +232,25 @@ Must update when deploying:
 - `wiki.repository.owner` - GitHub username
 - `wiki.repository.repo` - Repository name
 - `sections[]` - Navigation sections
+- `features.autoFormatPageTitles` - Auto-format page titles (see below)
 
 After editing, restart dev server or run `node scripts/copyConfig.js`
+
+**Auto-Format Page Titles Feature:**
+When `features.autoFormatPageTitles` is enabled, page filenames are automatically formatted for display:
+- Replaces hyphens with spaces: `getting-started` → `Getting Started`
+- Capitalizes first letter of each word: `early-game-roadmap` → `Early Game Roadmap`
+- Only applies when no explicit `title` is set in frontmatter
+- Affects breadcrumbs and section page listings
+
+Example:
+```json
+{
+  "features": {
+    "autoFormatPageTitles": true
+  }
+}
+```
 
 ### vite.config.js
 Must update `base` to match repository name:
@@ -257,17 +321,54 @@ Press `Ctrl+Shift+D` to open the Developer Tools panel for:
 - Export logs
 
 ### Log Files
-All logs are written to: `logs/debug.log`
+All logs are written to: `wiki-framework/logs/debug.log`
+
+**IMPORTANT: The log file updates in real-time as the application runs.**
+- Claude can read the logs directly using: `cat wiki-framework/logs/debug.log | tail -50`
+- Logs include console.log, console.error, console.warn from the browser
+- Use `tail -50` to see recent logs, or search for specific patterns
 
 **When debugging issues:**
-1. Check `logs/debug.log` for detailed error traces
-2. Use Dev Panel (`Ctrl+Shift+D`) for real-time monitoring
+1. **Check `wiki-framework/logs/debug.log` for detailed error traces** (updates live!)
+2. Use Dev Panel (`Ctrl+Shift+D`) for real-time monitoring in the browser
 3. Clear browser cache if changes not appearing
 4. Rebuild search index after content changes
+5. For component debugging, add `console.log()` and check the debug.log file
+
+### Prestige System
+The prestige badge system is fully documented in `PRESTIGE.md`. Key points:
+- Enable/disable via `public/wiki-config.json`: `prestige.enabled`
+- Badges appear on all user avatars throughout the app
+- Currently only shows for authenticated user
+- Architecture ready for multi-user support
+- Debug logs available in browser console (search for "PrestigeAvatar")
 
 ### Keyboard Shortcuts
 - `Ctrl+K` - Open search modal
 - `Ctrl+Shift+D` - Toggle Developer Tools panel
+
+### Error Handling
+The framework includes two types of error boundaries for better error recovery:
+
+**1. RouteErrorBoundary** (`wiki-framework/src/components/common/RouteErrorBoundary.jsx`)
+- Catches errors in route components using React Router's `errorElement`
+- Handles 404, 403, 500, and generic errors
+- Provides user-friendly error UI with navigation options
+- Automatically logs errors to debug system
+
+**2. ErrorBoundary** (`wiki-framework/src/components/common/ErrorBoundary.jsx`)
+- Class-based boundary for component-level errors
+- Catches rendering errors in component tree
+- Shows error details in development mode
+- Logs errors to debug system
+
+**Error Recovery Options:**
+- **Go Back** - Return to previous page
+- **Go Home** - Navigate to homepage
+- **Reload Page** - Refresh the application
+- **Developer Tools** - Open debug panel (Ctrl+Shift+D)
+
+All errors are automatically logged to `logs/debug.log` for analysis.
 
 ## Submodule Management
 
@@ -442,6 +543,46 @@ Features:
 5. **Restart dev server** after configuration changes
 6. **Use frontmatter** on all markdown files for proper indexing
 7. **Data files must be valid JSON** in `public/data/` directory
+
+## Component Rendering Order (CRITICAL)
+
+**ALWAYS check loading states BEFORE any other conditional renders** to prevent flickering.
+
+### Correct Pattern:
+```javascript
+// ✅ CORRECT - Loading check FIRST
+if (loading) {
+  return <LoadingSpinner />;
+}
+
+if (!isAuthenticated) {
+  return <AuthRequired />;
+}
+
+if (error) {
+  return <ErrorMessage />;
+}
+
+return <Content />;
+```
+
+### Incorrect Pattern:
+```javascript
+// ❌ WRONG - Auth check before loading causes flicker
+if (!isAuthenticated) {
+  return <AuthRequired />;  // Flickers briefly!
+}
+
+if (loading) {
+  return <LoadingSpinner />;
+}
+```
+
+### Why This Matters:
+- When a component mounts, initial state often has `loading = true` and `data = null/[]`
+- Checking data/auth before loading will briefly show error states
+- Users see a flash of "Not Authenticated" or "No Data" before the spinner appears
+- Always render loading spinner FIRST, then check other conditions after data loads
 
 ## Adding New Components
 

@@ -9,7 +9,7 @@ import { nodePolyfills } from 'vite-plugin-node-polyfills';
  */
 export default createWikiConfigSync({
   // Your wiki's base URL (must match GitHub Pages repo name)
-  base: '/my-wiki/',
+  base: '/',
 
   // Content location (for build-time @content alias - points to served content)
   contentPath: './public/content',
