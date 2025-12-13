@@ -1,9 +1,13 @@
 ---
-title: training-log
-description: Character system guide  
-tags: [character]
-category: Characters
-date: 2025-12-13
+id: training-log
+title: ''
+description: ''
+tags: []
+category: ''
+date: ''
 ---
 # training-log
 Comprehensive guide coming soon
+
+
+FORGOT THIS
