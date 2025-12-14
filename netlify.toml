@@ -18,9 +18,7 @@
   from = "/*"
   to = "/index.html"
   status = 200
-
-  # Except for these paths (API functions)
-  conditions = {path = ["!api/*"]}
+  force = false
 
 # Headers for security
 [[headers]]
