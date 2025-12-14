@@ -1,15 +1,15 @@
 ---
 id: promotion-option
-title: Promotion Option
-description: You can use dice to produce random companion promotion options
-tags:
-  - promotionoption
-category: Companions
-date: '2025-12-14'
+title: ''
+description: ''
+tags: []
+category: ''
+date: ''
+order: 0
 ---
 ##  Recommended Rolls
 
-Typically the player will benefit from having companions with full pages of max roll for attack. If the player is lacking mana recovery (ie. running out of mana when using fulg) it would help to add one or two rolls of mana recovery.
+Typically the player will benefit from having companions with full pages of max roll for attack. If the player is lacking mana recovery (ie. running out of mana when using fulg) it would help to add one or two rolls of mana recovery until they can put more levels into Luna's Mana Dope ability.
 
 ### Options
 
