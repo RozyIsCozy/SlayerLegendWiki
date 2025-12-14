@@ -42,7 +42,7 @@ jobs:
       - name: Build site
         run: npm run build
         env:
-          VITE_GITHUB_CLIENT_ID: ${{ secrets.GITHUB_CLIENT_ID }}
+          VITE_GITHUB_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
           VITE_WIKI_REPO_OWNER: ${{ github.repository_owner }}
           VITE_WIKI_REPO_NAME: ${{ github.event.repository.name }}
 
