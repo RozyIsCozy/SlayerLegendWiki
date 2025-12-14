@@ -44,3 +44,5 @@ logs/debug.log
 
 # External
 external
+# Excluded game assets (not for wiki)
+external/backups/excluded-images/

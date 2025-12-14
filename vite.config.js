@@ -1,6 +1,7 @@
 import { createWikiConfigSync } from './wiki-framework/vite.config.base.js';
 import { loggerPlugin } from './wiki-framework/vite-plugin-logger.js';
 import { githubProxyPlugin } from './wiki-framework/vite-plugin-github-proxy.js';
+import { imageDbPlugin } from './wiki-framework/vite-plugin-image-db.js';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
 
 /**
@@ -8,7 +9,7 @@ import { nodePolyfills } from 'vite-plugin-node-polyfills';
  * Extends the base wiki framework configuration
  */
 export default createWikiConfigSync({
-  // Your wiki's base URL (must match GitHub Pages repo name)
+  // Your wiki's base URL (use '/' for custom domain or user site)
   base: '/',
 
   // Content location (for build-time @content alias - points to served content)
@@ -35,6 +36,7 @@ export default createWikiConfigSync({
     }),
     loggerPlugin(),
     githubProxyPlugin(),
+    imageDbPlugin(),
   ],
 
   // You can override any Vite settings here

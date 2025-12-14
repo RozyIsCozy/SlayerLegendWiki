@@ -33,6 +33,12 @@ Parent Project (this repo)       Framework Submodule
 - `.env.local` - GitHub OAuth credentials
 - `tailwind.config.js` - Theme customization
 - `research/` - Research indexes and useful information (use this when adding content to the wiki)
+- `external/` - External tooling and assets (GITIGNORED)
+  - `scripts/` - Python scripts for data extraction, image processing, and automation
+  - `reports/` - Generated reports and summaries from processing tasks
+  - `backups/` - Automated backups from image processing operations
+  - `image-backup/` - Original images backed up before quality reduction
+  - `decompiled/` - Decompiled APK assets for data extraction
 
 **Auto-generated files (DO NOT EDIT):**
 - `public/wiki-config.json` - Auto-copied from root (gitignored)
